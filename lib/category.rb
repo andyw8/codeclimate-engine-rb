@@ -7,7 +7,7 @@ module Category
     "Clarity"
   end
 
-  def self.compatability
+  def self.compatibility
     "Compatibility"
   end
 
