@@ -1,7 +1,7 @@
 require "virtus"
 
 class Location
-  include Virtus.model
+  include Virtus.model(strict: true)
 
   attribute :path, String
   attribute :line_range, Range

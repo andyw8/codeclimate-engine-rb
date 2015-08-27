@@ -2,11 +2,11 @@ require "virtus"
 require "location"
 
 class Issue
-  include Virtus.model
+  include Virtus.model(strict: true)
 
   attribute :check_name, String
   attribute :description, String
-  attribute :categories, Array
+  attribute :categories, Array[String]
   attribute :location, Location
   attribute :remediation_points, Integer
 
