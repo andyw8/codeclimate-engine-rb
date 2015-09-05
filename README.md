@@ -66,7 +66,7 @@ To release a new version, update the version number in `version.rb`, and then ru
 
 ## Contributing
 
-1. Fork it ( https://github.com/andyw8nkk/codeclimate-engine-rb/fork )
+1. Fork it ( https://github.com/andyw8/codeclimate-engine-rb/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
