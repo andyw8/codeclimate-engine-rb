@@ -5,7 +5,7 @@ require 'cc_engine/version'
 
 # rubocop:disable Metrics/LineLength
 Gem::Specification.new do |spec|
-  spec.name          = "codeclimate_engine"
+  spec.name          = "codeclimate-engine-rb"
   spec.version       = CCEngine::VERSION
   spec.authors       = ["Andy Waite"]
   spec.email         = ["github.aw@andywaite.com"]
