@@ -56,24 +56,34 @@ module CCEngine
           }
         )
       end
+
+      it "uses the given remediation points" do
+        issue = build_issue(remediation_points: 7)
+
+        result = issue.to_hash
+
+        expect(result).to include(
+          remediation_points: 7
+        )
+      end
+
+      it "does not include remediation points if not set" do
+        issue = build_issue
+
+        result = issue.to_hash
+
+        expect(result).to_not have_key(:remediation_points)
+      end
     end
 
-    it "uses the given remediation points" do
-      issue = build_issue(remediation_points: 7)
+    describe "#render" do
+      it "renders the issue as JSON, followed by a null character" do
+        issue = build_issue
 
-      result = issue.to_hash
+        result = issue.render
 
-      expect(result).to include(
-        remediation_points: 7
-      )
-    end
-
-    it "does not include remediation points if not set" do
-      issue = build_issue
-
-      result = issue.to_hash
-
-      expect(result).to_not have_key(:remediation_points)
+        expect(result).to end_with("\0")
+      end
     end
 
     # rubocop:disable Metrics/MethodLength

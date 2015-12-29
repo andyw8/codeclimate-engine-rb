@@ -11,6 +11,10 @@ module CCEngine
     attribute :location
     attribute :remediation_points
 
+    def render
+      to_hash.to_json + "\0"
+    end
+
     def to_json
       to_hash.to_json
     end
