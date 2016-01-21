@@ -74,6 +74,27 @@ module CCEngine
 
         expect(result).to_not have_key(:remediation_points)
       end
+
+      it "uses the given content" do
+        content = double(:content)
+        issue = build_issue(content: content)
+
+        result = issue.to_hash
+
+        expect(result).to include(
+          body: {
+            content: content
+          }
+        )
+      end
+
+      it "does not include content if not set" do
+        issue = build_issue
+
+        result = issue.to_hash
+
+        expect(result).to_not have_key(:content)
+      end
     end
 
     describe "#render" do
@@ -92,14 +113,16 @@ module CCEngine
       description: "",
       categories: [],
       location: build_location,
-      remediation_points: nil
+      remediation_points: nil,
+      content: nil
     )
       Issue.new(
         check_name: check_name,
         description: description,
         categories: categories,
         location: location,
-        remediation_points: remediation_points
+        remediation_points: remediation_points,
+        content: content
       )
     end
     # rubocop:enable Metrics/MethodLength
