@@ -10,6 +10,7 @@ module CCEngine
     attribute :categories, Array[String]
     attribute :location
     attribute :remediation_points
+    attribute :content
 
     def render
       to_hash.to_json + "\0"
@@ -26,7 +27,7 @@ module CCEngine
         description: description,
         categories: categories,
         location: location.to_hash
-      }.merge(remediation_points_hash)
+      }.merge(remediation_points_hash).merge(content_hash)
     end
 
     private
@@ -36,6 +37,16 @@ module CCEngine
 
       {
         remediation_points: remediation_points
+      }
+    end
+
+    def content_hash
+      return {} unless content
+
+      {
+        body: {
+          content: content
+        }
       }
     end
   end
