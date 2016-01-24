@@ -44,8 +44,8 @@ module CCEngine
       return {} unless content
 
       {
-        body: {
-          content: content
+        content: {
+          body: content
         }
       }
     end

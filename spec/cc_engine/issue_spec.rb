@@ -82,8 +82,8 @@ module CCEngine
         result = issue.to_hash
 
         expect(result).to include(
-          body: {
-            content: content
+          content: {
+            body: content
           }
         )
       end
