@@ -61,6 +61,10 @@ Code Climate requires that each issue is terminated with a null character.
 Calling `render` on an issue will output the issue's JSON, followed by a null
 character.
 
+## Code Climate engines using this gem
+
+* [Reek](https://github.com/troessner/reek)
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
