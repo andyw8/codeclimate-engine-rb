@@ -95,6 +95,24 @@ module CCEngine
 
         expect(result).to_not have_key(:content)
       end
+
+      it "includes a fingerprint if set" do
+        issue = build_issue(fingerprint: "abc123")
+
+        result = issue.to_hash
+
+        expect(result).to include(
+          fingerprint: "abc123"
+        )
+      end
+
+      it "does not include fingerprint if not set" do
+        issue = build_issue
+
+        result = issue.to_hash
+
+        expect(result).to_not have_key(:fingerprint)
+      end
     end
 
     describe "#render" do
@@ -114,7 +132,8 @@ module CCEngine
       categories: [],
       location: build_location,
       remediation_points: nil,
-      content: nil
+      content: nil,
+      fingerprint: nil
     )
       Issue.new(
         check_name: check_name,
@@ -122,7 +141,8 @@ module CCEngine
         categories: categories,
         location: location,
         remediation_points: remediation_points,
-        content: content
+        content: content,
+        fingerprint: fingerprint
       )
     end
     # rubocop:enable Metrics/MethodLength
