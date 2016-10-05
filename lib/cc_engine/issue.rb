@@ -11,6 +11,7 @@ module CCEngine
     attribute :location
     attribute :remediation_points
     attribute :content
+    attribute :fingerprint
 
     def render
       to_hash.to_json + "\0"
@@ -27,7 +28,7 @@ module CCEngine
         description: description,
         categories: categories,
         location: location.to_hash
-      }.merge(remediation_points_hash).merge(content_hash)
+      }.merge(remediation_points_hash).merge(content_hash).merge(fingerprint_hash)
     end
 
     private
@@ -47,6 +48,14 @@ module CCEngine
         content: {
           body: content
         }
+      }
+    end
+
+    def fingerprint_hash
+      return {} unless fingerprint
+
+      {
+        fingerprint: fingerprint
       }
     end
   end
