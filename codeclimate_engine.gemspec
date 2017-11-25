@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = "JSON issue formatter for the Code Climate engine"
   spec.homepage      = "https://github.com/andyw8/codeclimate-engine-rb"
-  spec.license       = "MIT"
+  spec.licenses      = ["MIT"]
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(spec)/}) }
   spec.bindir        = "exe"
