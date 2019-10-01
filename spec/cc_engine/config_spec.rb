@@ -1,3 +1,4 @@
+# typed: false
 require "cc_engine/config"
 
 RSpec.describe CCEngine::Config do

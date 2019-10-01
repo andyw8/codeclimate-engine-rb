@@ -1,3 +1,4 @@
+# typed: ignore
 require "cc_engine/position/offset"
 
 module CCEngine

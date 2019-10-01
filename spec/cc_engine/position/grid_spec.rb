@@ -1,3 +1,4 @@
+# typed: false
 require "cc_engine/position/grid"
 
 module CCEngine
