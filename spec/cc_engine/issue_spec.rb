@@ -77,14 +77,13 @@ module CCEngine
       end
 
       it "uses the given content" do
-        content = double(:content)
-        issue = build_issue(content: content)
+        issue = build_issue(content: "my content")
 
         result = issue.to_hash
 
         expect(result).to include(
           content: {
-            body: content
+            body: "my content"
           }
         )
       end
