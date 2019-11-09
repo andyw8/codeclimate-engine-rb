@@ -1,9 +1,21 @@
-# typed: true
+# typed: strict
 require "json"
 
 module CCEngine
   class Issue
+    extend T::Sig
 
+    sig {
+      params(
+        check_name: String,
+        description: String,
+        categories: T::Array[String],
+        location: T.any(CCEngine::Location::LineRange, CCEngine::Location::Position),
+        remediation_points: T.nilable(Integer),
+        content: T.nilable(String),
+        fingerprint: T.nilable(String)
+      ).void
+    }
     def initialize(
       check_name:,
       description:,
@@ -13,23 +25,26 @@ module CCEngine
       content:,
       fingerprint:
     )
-      @check_name = check_name
-      @description = description
-      @categories = categories
-      @location = location
-      @remediation_points = remediation_points
-      @content = content
-      @fingerprint = fingerprint
+      @check_name = T.let(check_name, String)
+      @description = T.let(description, String)
+      @categories = T.let(categories, T::Array[String])
+      @location = T.let(location, T.any(CCEngine::Location::LineRange, CCEngine::Location::Position))
+      @remediation_points = T.let(remediation_points, T.nilable(Integer))
+      @content = T.let(content, T.nilable(String))
+      @fingerprint = T.let(fingerprint, T.nilable(String))
     end
 
+    sig {returns(String)}
     def render
       to_hash.to_json + "\0"
     end
 
+    sig {returns(String)}
     def to_json
       to_hash.to_json
     end
 
+    sig {returns(T::Hash[Symbol, T.untyped])}
     def to_hash
       {
         type: "issue",
@@ -42,6 +57,7 @@ module CCEngine
 
     private
 
+    sig {returns(T::Hash[Symbol, T.untyped])}
     def remediation_points_hash
       return {} unless remediation_points
 
@@ -50,6 +66,7 @@ module CCEngine
       }
     end
 
+    sig {returns(T::Hash[Symbol, T.untyped])}
     def content_hash
       return {} unless content
 
@@ -60,6 +77,7 @@ module CCEngine
       }
     end
 
+    sig {returns(T::Hash[Symbol, T.untyped])}
     def fingerprint_hash
       return {} unless fingerprint
 
@@ -68,21 +86,25 @@ module CCEngine
       }
     end
 
-    private
+    sig { returns(String) }
+    attr_reader :check_name
 
-    attr_reader :check_name,
-      :description,
-      :categories,
-      :location,
-      :remediation_points,
-      :content,
-      :fingerprint,
-      :check_name,
-      :description,
-      :categories,
-      :location,
-      :remediation_points,
-      :content,
-      :fingerprint
+    sig { returns(String) }
+    attr_reader :description
+
+    sig { returns(T::Array[String]) }
+    attr_reader :categories
+
+    sig { returns(T.any(CCEngine::Location::LineRange, CCEngine::Location::Position)) }
+    attr_reader :location
+
+    sig { returns(T.nilable(Integer)) }
+    attr_reader :remediation_points
+
+    sig { returns(T.nilable(String)) }
+    attr_reader :content
+
+    sig { returns(T.nilable(String)) }
+    attr_reader :fingerprint
   end
 end
