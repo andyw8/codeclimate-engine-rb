@@ -1,4 +1,4 @@
-# typed: strong
+# typed: strict
 require "sorbet-runtime"
 
 require "cc_engine/version"
