@@ -1,12 +1,22 @@
-# typed: true
+# typed: strict
+
 module CCEngine
   module Location
     class LineRange
+      extend T::Sig
+
+      sig {
+        params(
+          path: String,
+          line_range: T::Range[Integer],
+        ).void
+      }
       def initialize(path:, line_range:)
-        @path = path
-        @line_range = line_range
+        @path = T.let(path, String)
+        @line_range = T.let(line_range, T::Range[Integer])
       end
 
+      sig { returns(T::Hash[Symbol, T.untyped]) }
       def to_hash
         {
           path: path,
@@ -19,7 +29,11 @@ module CCEngine
 
       private
 
-      attr_reader :path, :line_range
+      sig { returns(String) }
+      attr_reader :path
+
+      sig { returns(T::Range[Integer]) }
+      attr_reader :line_range
     end
   end
 end
