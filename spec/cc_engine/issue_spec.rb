@@ -1,3 +1,4 @@
+# typed: false
 require "cc_engine/issue"
 require "cc_engine/category"
 

@@ -1,3 +1,4 @@
+# typed: true
 module CCEngine
   module Position
     class Grid
