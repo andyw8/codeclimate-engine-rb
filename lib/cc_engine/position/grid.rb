@@ -1,12 +1,16 @@
-# typed: true
+# typed: strict
 module CCEngine
   module Position
     class Grid
+      extend T::Sig
+
+      sig {params(line: Integer, column: Integer).void}
       def initialize(line:, column:)
-        @line = line
-        @column = column
+        @line = T.let(line, Integer)
+        @column = T.let(column, Integer)
       end
 
+      sig {returns(T::Hash[Symbol, T.untyped])}
       def to_hash
         {
           line: line,
@@ -14,7 +18,11 @@ module CCEngine
         }
       end
 
-      attr_reader :line, :column
+      sig {returns(Integer)}
+      attr_reader :line
+
+      sig {returns(Integer)}
+      attr_reader :column
     end
   end
 end
