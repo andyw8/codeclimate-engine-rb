@@ -1,11 +1,15 @@
-# typed: true
+# typed: strict
+
 module CCEngine
   module Position
     class Offset
+      extend T::Sig
+      sig {params(offset: Integer).void}
       def initialize(offset:)
-        @offset = offset
+        @offset = T.let(offset, Integer)
       end
 
+      sig {returns(T::Hash[Symbol, T.untyped])}
       def to_hash
         {
           offset: offset
@@ -14,6 +18,7 @@ module CCEngine
 
       private
 
+      sig { returns(Integer) }
       attr_reader :offset
     end
   end
