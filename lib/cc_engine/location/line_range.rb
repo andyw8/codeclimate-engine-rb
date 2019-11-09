@@ -1,12 +1,10 @@
-require "virtus"
-
 module CCEngine
   module Location
     class LineRange
-      include Virtus.model(strict: true)
-
-      attribute :path, String
-      attribute :line_range, Range
+      def initialize(path:, line_range:)
+        @path = path
+        @line_range = line_range
+      end
 
       def to_hash
         {
@@ -17,6 +15,10 @@ module CCEngine
           }
         }
       end
+
+      private
+
+      attr_reader :path, :line_range
     end
   end
 end

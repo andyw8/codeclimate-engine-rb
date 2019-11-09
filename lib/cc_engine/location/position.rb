@@ -1,13 +1,11 @@
-require "virtus"
-
 module CCEngine
   module Location
     class Position
-      include Virtus.model(strict: true)
-
-      attribute :path, String
-      attribute :start_position
-      attribute :end_position
+      def initialize(path:, start_position:, end_position:)
+        @path = path
+        @start_position = start_position
+        @end_position = end_position
+      end
 
       def to_hash
         {
@@ -18,6 +16,10 @@ module CCEngine
           }
         }
       end
+
+      private
+
+      attr_reader :path, :start_position, :end_position
     end
   end
 end
