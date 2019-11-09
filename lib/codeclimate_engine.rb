@@ -1,4 +1,6 @@
 # typed: strong
+require "sorbet-runtime"
+
 require "cc_engine/version"
 require "cc_engine/issue"
 require "cc_engine/location"
