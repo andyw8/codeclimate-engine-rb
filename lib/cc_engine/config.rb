@@ -25,7 +25,7 @@ module CCEngine
     private
 
     def parsed_json
-      @parsed_json = JSON.parse(json_string)
+      @parsed_json ||= JSON.parse(json_string)
     end
   end
 end
