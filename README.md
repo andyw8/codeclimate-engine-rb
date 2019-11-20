@@ -63,7 +63,7 @@ character.
 
 ## Code Climate engines using this gem
 
-* [Reek](https://github.com/troessner/reek)
+* [Reek](https://docs.codeclimate.com/docs/reek)
 
 ## Development
 
