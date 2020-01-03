@@ -6,7 +6,7 @@ module CCEngine
       extend T::Sig
       sig {params(offset: Integer).void}
       def initialize(offset:)
-        @offset = T.let(offset, Integer)
+        @offset = offset
       end
 
       sig {returns(T::Hash[Symbol, T.untyped])}

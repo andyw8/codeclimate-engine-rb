@@ -7,8 +7,7 @@ module CCEngine
 
     sig { params(json_string: String).void }
     def initialize(json_string)
-      @json_string = T.let(json_string, String)
-      @parsed_json = T.let(nil, T.nilable(T::Hash[String, T.untyped]))
+      @json_string = json_string
     end
 
     sig { returns(T::Array[String]) }
@@ -35,6 +34,7 @@ module CCEngine
 
     sig {returns(T::Hash[String, T.untyped])}
     def parsed_json
+      @parsed_json = T.let(nil, T.nilable(T::Hash[String, T.untyped]))
       @parsed_json ||= JSON.parse(json_string)
     end
   end

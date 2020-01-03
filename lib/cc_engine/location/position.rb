@@ -12,9 +12,9 @@ module CCEngine
         ).void
       }
       def initialize(path:, start_position:, end_position:)
-        @path = T.let(path, String)
-        @start_position = T.let(start_position, T.any(CCEngine::Position::Offset, CCEngine::Position::Grid))
-        @end_position = T.let(end_position, T.any(CCEngine::Position::Offset, CCEngine::Position::Grid))
+        @path = path
+        @start_position = start_position
+        @end_position = end_position
       end
 
       sig { returns(T::Hash[Symbol, T.untyped]) }

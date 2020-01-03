@@ -6,8 +6,8 @@ module CCEngine
 
       sig {params(line: Integer, column: Integer).void}
       def initialize(line:, column:)
-        @line = T.let(line, Integer)
-        @column = T.let(column, Integer)
+        @line = line
+        @column = column
       end
 
       sig {returns(T::Hash[Symbol, T.untyped])}

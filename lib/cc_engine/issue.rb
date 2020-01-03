@@ -25,13 +25,13 @@ module CCEngine
       content:,
       fingerprint:
     )
-      @check_name = T.let(check_name, String)
-      @description = T.let(description, String)
-      @categories = T.let(categories, T::Array[String])
-      @location = T.let(location, T.any(CCEngine::Location::LineRange, CCEngine::Location::Position))
-      @remediation_points = T.let(remediation_points, T.nilable(Integer))
-      @content = T.let(content, T.nilable(String))
-      @fingerprint = T.let(fingerprint, T.nilable(String))
+      @check_name = check_name
+      @description = description
+      @categories = categories
+      @location = location
+      @remediation_points = remediation_points
+      @content = content
+      @fingerprint = fingerprint
     end
 
     sig {returns(String)}

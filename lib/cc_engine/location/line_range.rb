@@ -12,8 +12,8 @@ module CCEngine
         ).void
       }
       def initialize(path:, line_range:)
-        @path = T.let(path, String)
-        @line_range = T.let(line_range, T::Range[Integer])
+        @path = path
+        @line_range = line_range
       end
 
       sig { returns(T::Hash[Symbol, T.untyped]) }
