@@ -1,5 +1,6 @@
 # typed: strict
 require "json"
+require "cc_engine/location"
 
 module CCEngine
   class Issue < T::Struct
