@@ -1,26 +1,30 @@
-require "virtus"
+# typed: strict
 require "json"
+require "cc_engine/location"
 
 module CCEngine
-  class Issue
-    include Virtus.model(strict: true)
+  class Issue < T::Struct
+    extend T::Sig
 
-    attribute :check_name, String
-    attribute :description, String
-    attribute :categories, Array[String]
-    attribute :location
-    attribute :remediation_points
-    attribute :content
-    attribute :fingerprint
+    prop :check_name, String
+    prop :description, String
+    prop :categories, T::Array[String]
+    prop :location, T.any(CCEngine::Location::LineRange, CCEngine::Location::Position)
+    prop :remediation_points, T.nilable(Integer)
+    prop :content, T.nilable(String)
+    prop :fingerprint, T.nilable(String)
 
+    sig {returns(String)}
     def render
       to_hash.to_json + "\0"
     end
 
+    sig {returns(String)}
     def to_json
       to_hash.to_json
     end
 
+    sig {returns(T::Hash[Symbol, T.untyped])}
     def to_hash
       {
         type: "issue",
@@ -33,6 +37,7 @@ module CCEngine
 
     private
 
+    sig {returns(T::Hash[Symbol, T.untyped])}
     def remediation_points_hash
       return {} unless remediation_points
 
@@ -41,6 +46,7 @@ module CCEngine
       }
     end
 
+    sig {returns(T::Hash[Symbol, T.untyped])}
     def content_hash
       return {} unless content
 
@@ -51,6 +57,7 @@ module CCEngine
       }
     end
 
+    sig {returns(T::Hash[Symbol, T.untyped])}
     def fingerprint_hash
       return {} unless fingerprint
 

@@ -1,3 +1,4 @@
+# typed: false
 require "cc_engine/location/line_range"
 
 module CCEngine

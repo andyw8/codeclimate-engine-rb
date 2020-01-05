@@ -1,13 +1,22 @@
-require "virtus"
+# typed: strict
 
 module CCEngine
   module Location
     class LineRange
-      include Virtus.model(strict: true)
+      extend T::Sig
 
-      attribute :path, String
-      attribute :line_range, Range
+      sig {
+        params(
+          path: String,
+          line_range: T::Range[Integer],
+        ).void
+      }
+      def initialize(path:, line_range:)
+        @path = path
+        @line_range = line_range
+      end
 
+      sig { returns(T::Hash[Symbol, T.untyped]) }
       def to_hash
         {
           path: path,
@@ -17,6 +26,14 @@ module CCEngine
           }
         }
       end
+
+      private
+
+      sig { returns(String) }
+      attr_reader :path
+
+      sig { returns(T::Range[Integer]) }
+      attr_reader :line_range
     end
   end
 end

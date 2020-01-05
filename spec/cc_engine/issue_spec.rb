@@ -1,3 +1,4 @@
+# typed: false
 require "cc_engine/issue"
 require "cc_engine/category"
 
@@ -45,7 +46,8 @@ module CCEngine
       end
 
       it "accepts a location" do
-        location = double(:location, to_hash: { foo: "bar" })
+        location = build_location
+        allow(location).to receive(:to_hash).and_return(foo: "bar")
         issue = build_issue(location: location)
 
         result = issue.to_hash
@@ -76,14 +78,13 @@ module CCEngine
       end
 
       it "uses the given content" do
-        content = double(:content)
-        issue = build_issue(content: content)
+        issue = build_issue(content: "my content")
 
         result = issue.to_hash
 
         expect(result).to include(
           content: {
-            body: content
+            body: "my content"
           }
         )
       end
@@ -148,7 +149,7 @@ module CCEngine
     # rubocop:enable Metrics/MethodLength
 
     def build_location
-      double(:location, to_hash: { foo: "bar" })
+      CCEngine::Location::LineRange.new(path: "my/path", line_range: (1..2))
     end
   end
 end
