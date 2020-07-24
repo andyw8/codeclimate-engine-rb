@@ -1,3 +1,4 @@
+# typed: true
 module CCEngine
   module Category
     def self.bug_risk

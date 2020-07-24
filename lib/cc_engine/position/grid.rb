@@ -1,3 +1,4 @@
+# typed: ignore
 require "virtus"
 
 module CCEngine
