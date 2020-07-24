@@ -1,12 +1,10 @@
-require "virtus"
-
 module CCEngine
   module Position
     class Grid
-      include Virtus.model(strict: true)
-
-      attribute :line, Integer
-      attribute :column, Integer
+      def initialize(line:, column:)
+        @line = line
+        @column = column
+      end
 
       def to_hash
         {
@@ -14,6 +12,8 @@ module CCEngine
           column: column
         }
       end
+
+      attr_reader :line, :column
     end
   end
 end
