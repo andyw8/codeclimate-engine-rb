@@ -1,17 +1,25 @@
-require "virtus"
 require "json"
 
 module CCEngine
   class Issue
-    include Virtus.model(strict: true)
 
-    attribute :check_name, String
-    attribute :description, String
-    attribute :categories, Array[String]
-    attribute :location
-    attribute :remediation_points
-    attribute :content
-    attribute :fingerprint
+    def initialize(
+      check_name:,
+      description:,
+      categories:,
+      location:,
+      remediation_points:,
+      content:,
+      fingerprint:
+    )
+      @check_name = check_name
+      @description = description
+      @categories = categories
+      @location = location
+      @remediation_points = remediation_points
+      @content = content
+      @fingerprint = fingerprint
+    end
 
     def render
       to_hash.to_json + "\0"
@@ -58,5 +66,15 @@ module CCEngine
         fingerprint: fingerprint
       }
     end
+
+    private
+
+    attr_reader :check_name,
+      :description,
+      :categories,
+      :location,
+      :remediation_points,
+      :content,
+      :fingerprint
   end
 end
