@@ -75,13 +75,6 @@ module CCEngine
       :location,
       :remediation_points,
       :content,
-      :fingerprint,
-      :check_name,
-      :description,
-      :categories,
-      :location,
-      :remediation_points,
-      :content,
       :fingerprint
   end
 end
